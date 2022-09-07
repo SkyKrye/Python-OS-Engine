@@ -17,4 +17,11 @@ you can call it "pyTerminal", or "pyter Minimal"
 - **secret** commands
 
 ## these are the things i want to do:
-[] toggleable gui and cli modes
+- [ ] toggleable gui and cli modes
+- [ ] extra extra extra commands
+- [ ] a nice emulator for commands that powershell etc can do
+- [ ] **more commands**
+- [ ] picture/image recognition
+- [ ] website emulation with ascii interfaces
+- [ ] bark-it post integration
+- [ ] custom commands
