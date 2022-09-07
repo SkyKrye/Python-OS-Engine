@@ -1,5 +1,5 @@
-# Python-OS-Engine
-A small operating system type of python script that does things like make delete files stuff and more things you can do on a command line operating system i think.
+# pyTer
+A small shell/terminal type of python script that does things like make delete files stuff and more things you can do on a command line operating system i think.
 
 It is known for being the most goofy thing I ever made with python, and it'll stay that way probably maybe I think
 you can call it "pyTerminal", or "pyter Minimal"
