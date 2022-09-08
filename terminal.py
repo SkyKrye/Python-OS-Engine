@@ -1,7 +1,8 @@
 
 # Online Python - IDE, Editor, Compiler, Interpreter
 
-username = input('user - ')
+import os
+username = os.getlogin()
 terminal='standardTerminal'
 password='none'
 echo='none'
@@ -24,8 +25,8 @@ print('- do "helpcmd" for a list of available commands')
 while True:
     path = (terminal+'/'+username+' - ')
     cmd = input(path)
-    if cmd=='helpcmd':
-        print('commands are - \n- helpcmd \n- settings \n- file \n- calculator \n- openecho \n- printTools \n- infofetch \n- docs \n- end')
+    if cmd=='help':
+        print('commands are - \n- help \n- settings \n- file \n- calculator \n- openecho \n- printTools \n- infofetch \n- docs \n- end')
         commandsExecuted+=1
 
 
@@ -320,6 +321,25 @@ while True:
         root.mainloop()
         commandsExecuted+=1
 
+#os
+    elif cmd == 'pythonbase':
+        import os
+        cwd = os.getcwd()
+        print('OS current working directory -', cwd)
+
+#os makedir
+    elif cmd == 'makedir':
+        import os
+        madeDir=input('directory name - ')
+        os.mkdir(madeDir)
+        print('removed directory - ', madeDir)
+
+#os removedir
+    elif cmd == 'removedir':
+        import os
+        removedDir=input('directory name - ')
+        os.rmdir(removedDir)
+        print('removed directory - ', removedDir)
 
 #print Tools
     elif cmd == 'printTools':
