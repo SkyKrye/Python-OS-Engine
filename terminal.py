@@ -1,32 +1,30 @@
 
 # Online Python - IDE, Editor, Compiler, Interpreter
 
-import os
-username = os.getlogin()
-terminal='standardTerminal'
-password='none'
-echo='none'
-filescreatedtotal=1
-filescreated=1
-fileseditedtotal=1
-filesedited=1
-errorVariable=0
-oneVariablePlaceHolder=1
-errorVariableTotal=0
-commandsExecuted=0
-rawprint='none'
+from os import *
+from registry import *
 
 #startup
 print('- pyTerminal -')
 print('- Welcome to pyTerminal -')
-print('- do "helpcmd" for a list of available commands')
+print('- do "help" for a list of available commands')
 
 
 while True:
     path = (terminal+'/'+username+' - ')
     cmd = input(path)
     if cmd=='help':
-        print('commands are - \n- help \n- settings \n- file \n- calculator \n- openecho \n- printTools \n- infofetch \n- docs \n- end')
+        print("""commands are -
+- help
+- settings
+- file
+- calculator
+- openecho
+- printools
+- infofetch
+- docs
+- regvar
+- end""")
         commandsExecuted+=1
 
 
@@ -175,7 +173,7 @@ while True:
             print('no such option')
 
     elif cmd == 'set.data':
-        if password == 'none':
+        if password == 'iJRJHGEYBV':
             print('cannot reset data')
         else:
             confirm=input('confirm password - ')
@@ -185,9 +183,9 @@ while True:
                     print('reset started')
                     terminal='standardTerminal'
                     username='defaultUser'
-                    password='none'
+                    password='iJRJHGEYBV'
                     commandsExecuted=0
-                    echo='none'
+                    echo='iJRJHGEYBV'
                     filescreatedtotal=1
                     filescreated=1
                     fileseditedtotal=1
@@ -216,7 +214,7 @@ while True:
         commandsExecuted+=1
 
     elif cmd == 'openecho.last':
-        if echo == 'none':
+        if echo == 'iJRJHGEYBV':
             print('no record of last openecho use')
             commandsExecuted+=1
         else:
@@ -256,6 +254,27 @@ while True:
         openfile.close()
         commandsExecuted+=1
 
+    elif cmd == 'file.img':
+        print('file. \n- file.imgP \n- file.imgB')
+
+    elif cmd == 'file.image':
+        from PIL import Image
+        image=Image.open(input('name image - '))
+        image.show('showed image:')
+        print('a new window has been opened on your primary system monitor')
+
+    elif cmd == 'file.imgB':
+        openimg=open(input('img - ') , 'rb')
+        print('file -' , openimg)
+        print(openimg.read())
+        openimg.close()
+        commandsExecuted+=1
+
+    elif cmd == 'file.imgP':
+        from PIL import Image
+        im = Image.open(r"python.png")
+        im.show() 
+
     elif cmd == 'file.create':
         createfile=open(input('name file - ')+'.'+input('extension - '), 'x')
         createfile.close()
@@ -277,7 +296,7 @@ while True:
         commandsExecuted+=1
 
     elif cmd == 'file.delete':
-        if password == 'none':
+        if password == 'iJRJHGEYBV':
             print('cannot delete file')
         else:
             confirm=input('confirm password - ')
@@ -288,7 +307,7 @@ while True:
                     filedeleter=input('name file - ')
                     if os.path.exists(filedeleter):
                         os.remove(filedeleter)
-                        filedeleter='none'
+                        filedeleter='iJRJHGEYBV'
                         commandsExecuted+=1
                     else:
                         print("file not found")
@@ -297,6 +316,37 @@ while True:
             else:
                 print('access denied')
 
+    elif cmd == 'file.info':
+        import os
+        fileinfo_name=input('name file - ')
+        if os.path.exists(fileinfo_name):
+            fileinfo_size = os.path.getsize(fileinfo_name)
+            print('file size - '+ str(fileinfo_size) +' bytes')
+        else:
+            print('file not found')
+
+#file root display
+    elif cmd == 'fileRoot-display':
+        import os
+        if __name__ == "__main__":
+            for (root,dirs,files) in os.walk('C:\\Users\\Raahim\\OneDrive\\Documents\\Python'):
+                print (root)
+                print (dirs)
+                print (files)
+
+    elif cmd == 'fileRoot-displayAUTO':
+        import os
+        if __name__ == "__main__":
+            for (root,dirs,files) in os.walk(os.getcwd()):
+                print (root)
+                print (dirs)
+                print (files)
+
+    elif cmd == 'fileRoot-cmd':
+        print('set terminal paths as - ')
+        terminal = str(os.getcwd())
+        print('- terminal - '+terminal)
+        print('- username - '+username)
 
 #trolled
     elif cmd == 'print(trolled)':
@@ -342,7 +392,25 @@ while True:
         print('removed directory - ', removedDir)
 
 #print Tools
-    elif cmd == 'printTools':
+    elif cmd == 'printools':
+        print("""printools -
+printool
+printoolsgui""")
+
+#print Tools
+    elif cmd == 'printool':
+        x = 12
+        y = 14
+        user_input = input("Enter a variable name: ")
+        try:
+            print(eval(user_input))
+        except NameError:
+            print("syntax error - no such variable")
+        except SyntaxError:
+            print("syntax error - invalid input")
+
+#print Tools gui
+    elif cmd == 'printools gui':
         print('a new window has been opened on your primary system monitor')
         print('close it to stop printTools ')
         commandsExecuted+=1
@@ -418,6 +486,25 @@ while True:
             print(randomRaterPrint)
             break
 
+#regvar
+    elif cmd == 'regvar':
+        regvarinput = input("registry variable - ")
+        try:
+            print(eval(user_input))
+        except NameError:
+            print("syntax error - no such variable")
+        except SyntaxError:
+            print("syntax error - invalid input")
+
+#registry
+    elif cmd == 'registry':
+        import io
+        with io.open('registry.py', "r") as f:
+            lines = f.readlines()[5:]
+            print()
+            for line in lines:
+                print(line, end="")
+
 #documents
     elif cmd == 'docs':
         print('docs - Documents - \n- docs.main \n- docs.commands \n- docs.development')
@@ -433,7 +520,7 @@ while True:
     The pyTerminal is a basic terminal similar to that of operating systems like Windows(Microsoft) and Linux(UNIX, IBM, GNU)
     The similarities of it cannot be compared to MacOS(Apple) since the developer(SkyKrye) does not have any experience with using it.
     pyTerminal was a project that I decided to make simply out of boredom, one day I was sitting in my room in quarantine and decided
-    to remake a failed HTML project(CLIos_https://skykrye.000webhostapp.com/clios/clios.html) - that had some functions which would
+    to remake a failed HTML project(CLIos_https://web.smpverge.cf/clios/clios.html) - that had some functions which would
     allow you to use it like an operating system - but in actual CLI using a much easier to learn and read language(Python), now since
     I had already had some experience with Python I started to bang bang my keyboard and make a simple program that was built on
     [if/else] statements for commands and I keep updating it every now and then when I get ideas for commands.
@@ -505,8 +592,8 @@ while True:
                - echo's "Hello, World!"[openecho.sayhi]
     - usage - [openecho.{parameter}]
 
-    - printTools - This command when executed opens a new window on your computer that shows buttons to print out in the terminal.
-    - usage - [printTools]
+    - printools - This command when executed opens a new window on your computer that shows buttons to print out in the terminal.
+    - usage - [printools]
 
     - infofetch - A command based off the Linux(UNIX, IBM, GNU) neofetch command, it generates a large print of a ascii character with
                 - important variables and information about pyTerminal and how it is being used.
@@ -514,6 +601,12 @@ while True:
 
     - docs - A command for displaying multiple documents that might help you out with using pyTerminal and command information
     - usage - [docs.{parameter}]
+
+    - regvar - A command tied to the "registry" command, prints out a variable from the registry/variable record.
+    - usage - [regvar]
+
+    - registry - A variable record containing data used internally by pyTer.
+    - usage - [registry]
 
      docs.main - |docs.commands| - docs.secrets - docs.development
 
@@ -565,93 +658,53 @@ while True:
 
 #infofetch
     elif cmd == 'infofetch':
+        import os
+        import platform
         print(r"""
-                                                                                                                                                                                                        
-                                     ::::::                                                         
-                                    ::======:                                                       
-                                   ::===.=====                                                      
-                                   :==......===:                                                    
-                                  ::==.......====                                                   
-                                  :===.........===                                                  
-                                  :==...........===                                                 
-                                  :==............===:                                               
-                                  :==.............====                                              
-                                  :==...............===                                             
-                                  :==................===                                            
-                                  :==.................===:                                          
-                                 ::==..................====                                         
-                                 :==.....................===                                        
-                                 :==......................===:                                      
-                                 :==.........:::...........====:                                    
-                                 :==........::===:...........====:                                  
-                                 :==........:======:..........=====:                                
-                                 :==........:== =====:..........=====::                             
-                                 :==........:==    ====...........======::                          
-                                 :==........:==     ====:............======:::                      
-                                 :==.........==       ====:.............=======                     User: """+ username+ """
-                                  ==.........:==        ====...............=====                    
-                                  :==........:==         ====:................===                   Main: pyTerminal
-                                  :==.......::==           ====:...............===                  
-                                  :==........:=              ====:..............===                 Language (Main): Python
-                                  :==........::=              =====:...::........==                 
-                                  :==........::=                =====:.:==.......:==                Path: """+ path+ """
-                                  :==........::=                  =====:==.......:==                
-                                  :==........::=                     ====.........===               Shell/CMD: input("""+ path+ """)
-                                  :==.........::                    ::==.........::==               
-                                  :==.........::=       :::::      ::===.........:==                
-                                  :==.........::=     ::=====:::::::===.........::==                
-                                  :==.........::= ::::================........:::==                 
-                                  :==.........::::=======....========........::===                  
-                                  :==.........:========....................:::===                   
-                                  :==........:=====.........==...........:::====                    
-                                  :==........:==............==.........:::====                      Files Created: """+ str(filescreatedtotal)+ """
-                                   ==........:==...........::::......:::=====                       
-                                   :==......:==........::::=====....::=====                         Files Edited: """+ str(fileseditedtotal)+ """
-                                   :==......:=......:::====    .::..=====                           
-                                   :==......:=..::::====        =:..=:                              Total Errors: """+ str(errorVariableTotal)+ """
-                                   :==......:=::====           =:..:=:                              
-                                   :==........===:=           =:..===:                              Total commands executed: """+ str(commandsExecuted)+ """
-                                   :==..........::=         =::.:==::                               
-                                   :==..........::=       ==:...==                                  
-                                   :==..........::=     ==::.:===                                   
-                                   :==..........::=   ==::..:===                                    
-              =                    :==..........::= ==::....==                                      
-              =                     ==...........::=::..:====                                       
-             =:=                    :==..........::===:=====                                        
-             =::=                   :==..........::======                                           
-             =::=                   :==..........::=                                                
-             =::=                   :==..........::=                                                
-             =::=                   :==..........::=                                                
-             =:::=                  :==..........::=                                                
-             =:=:=                  :==..........::=                                                
-             =:=:=                 ::==..........::=                                                
-             =:=::=                ::==..........::=                                                
-             =::=:=                ::==..........::=                                                
-             =::=::=               ::=............:=                                                
-             =::=.::               ::=............:=                                                
-             =::=.:::              ::=............:=                                                
-              =:=..:::             ::=............:=                                                
-              =::=..:::            ::=...........::=                                                
-              =::=...:::           ::=...........::=                                                
-              =::=....::::         ::=...........::=                                                
-               ::=.....=:::       ::==...........::=                                                
-               =::=.....=:::::   :::=............::=                                                
-                ::=......==::::::::==............::=                                                
-                =::=.......===:::===.............::=                                                
-                 :::=.........====...............::=                                                
-                 =:::=...........................::=                                                
-                  =:::..........................:::=                                                
-                   =:::.........................::==                                                
-                    =::::.......................::=                                                 
-                     ==::::....................:::=                                                 
-                        =:::::.................::==                                                 
-                          =:::::..............:::=                                                  
-                            =::::::..........:::==                                                  
-                              ==::::::::..:::::==                                                   
-                                 ==::::::::::===                                                    
-                                    ===::::===                                                      
-                                        ====                                                        
-        
+                 ::                          
+              .::::::                        
+             .:::-----                       
+             .:--..:=-=                      
+            ::-::   .-==                     
+            ::-::   .-==                     User: """+ username+ """
+            ::-..     -=-=                   
+            ::-..      .==-                  Main: pyTerminal
+            .:-..       .--=                 
+            ::-          .:=-::              Language (Main): Python
+            :--     .:     :----:            
+            :--    .-+=:    .--=-::::        Path: """+ path+ """
+            ::-    .=+ +=.     .----:::      
+            :--     -+  +=-.      .---=:     Shell/CMD: input("""+ path+ """)
+             :-..   :+    +=:        .-=:    
+             :-..   :=      +==:      .-::   
+             :-..   .=       +++=:::   .::   Files Created: """+ str(filescreatedtotal)+ """
+             :-..   .-          ===.   .::   Files Edited: """+ str(fileseditedtotal)+ """
+             :-..   .-          ===.   .::   Total Errors: """+ str(errorVariableTotal)+ """
+             :=..   .:   ---:  ::=:    .::   Total commands executed: """+ str(commandsExecuted)+ """
+             :=..   .:---=---====-    .-::   Last echo: """+ str(echo)+ """
+            ::=..   .-==-:  :....   .:-=:    Current Working Directory: """+ str(os.getcwd())+ """
+             :=..   :=.     =     .:-==:     Login: """+ str(os.getlogin())+ """
+             :---   -:  ..:....  :-===:      Process ID: """+ str(os.getpid())+ """
+             :---   :.::-==  ::..-==+        OS UNAME: """+ str(platform.uname())+ """
+             :---   .--=    :...::.          
+             :---    .:   -:.::-:.:          
+  :::        :---    .:==-..-===:            
+ :::::        ---     .--:--===:             
+ :::.:        :==.    .======                
+ :::.::       :==.    .-                     
+ :--:. ..:    :--     .-=                    
+  --::  .::  :---     .-=                    
+  --::.  ::::--..     .-=                    
+    -:..  .::-.       .-:                    
+    :-:.              .-:                    
+     :-:..           .:=:                    
+      =-::..         .::                     
+        --:::..     .:-:                     
+        --:::..     .:-:                     
+          :---:::...:-=:                     
+              -==:--==:                      
+                  ==:                        
+
     """)
 
 #end
@@ -666,7 +719,7 @@ while True:
                 print('file not found, proceeding to end')
             statsfile=open('stats.txt' , 'x')
             statsfile=open('stats.txt' , 'w')
-            statsfile.write('stats-info - \n- path -'+path+'\n- terminal -'+terminal+'\n- username -'+username+'\n- password -'+password)
+            statsfile.write('stats-info - \n- path -'+path+'\n- terminal -'+terminal+'\n- username -'+username+'\n- password -'+password+'\n- os name -'+os.name)
             statsfile.close()
             print('saved stats to file - stats.txt')
             break
